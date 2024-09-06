@@ -1,5 +1,6 @@
 import json
 from langchain_core.messages.ai import AIMessage
+from langchain_core.messages import SystemMessage
 from termcolor import colored
 from state.agent_graph import AgentGraphState
 from services.model_service import ModelService
@@ -73,6 +74,7 @@ class ReactAgent:
 
         sys_prompt = self.write_react_prompt(user_prompt=user_prompt)
         # user_prompt = user_request
+        tool_response = None
         action = None
         action_input = None
         scratchpad = []
@@ -136,7 +138,10 @@ class ReactAgent:
                 )
 
         # Return the final answer
-        return {"response": AIMessage(content=answer)}
+        return {
+            "response": AIMessage(content=answer),
+            "tool_response": SystemMessage(content=str(tool_response)),
+        }
 
     def execute_tool(self, action: str, action_input: dict):
         """

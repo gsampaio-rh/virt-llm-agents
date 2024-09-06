@@ -5,5 +5,4 @@ from typing import Annotated, TypedDict, Any
 class AgentGraphState(TypedDict):
     input: str
     response: Annotated[list, add_messages]
-
-
+    tool_response: Annotated[list, add_messages]
