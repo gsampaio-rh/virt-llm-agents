@@ -139,7 +139,7 @@ class ReactAgent:
 
         # Return the final answer
         return {
-            "response": AIMessage(content=answer),
+            f"{self.role}_response": AIMessage(content=answer),
             "tool_response": SystemMessage(content=str(tool_response)),
         }
 
