@@ -14,11 +14,12 @@ The notebooks demonstrate how to implement AI agents using models like **Llama 3
 .
 ├── 01-llm.ipynb                # Introduction to LLMs (Llama 3)
 ├── 02-react-prompting.ipynb    # Introduction to ReAct Prompting with Llama 3
-├── 03-agent.ipynb              # Initial setup of AI-powered agent
-├── 04-multi-agent.ipynb        # Multi-Agent orchestration using LangChain
-├── 11-planning.ipynb           # AI agent task planning
-├── 12-virt-agent.ipynb         # Virtualization agent interacting with VMs
-├── 13-ocp-agent.ipynb          # OpenShift agent for handling OCP workflows
+├── 11-agent.ipynb              # Initial setup of AI-powered agent
+├── 12-react-agent.ipynb        # Build a ReAct Agent
+├── 13-multi-agent.ipynb        # Multi-Agent orchestration using LangChain
+├── 21-planning.ipynb           # AI agent task planning
+├── 22-virt-agent.ipynb         # Virtualization agent interacting with VMs
+├── 23-ocp-agent.ipynb          # OpenShift agent for handling OCP workflows
 ├── agent                       # Agent source code
 │   └── base_agent.py           # Base agent logic
 │   └── react_agent.py          # ReAct agent logic
@@ -42,7 +43,7 @@ The notebooks demonstrate how to implement AI agents using models like **Llama 3
 
 ## First Module
 
-This module contains several Jupyter notebooks, each focusing on the fundamentals of LLMs, ReAct prompting, and AI-powered agents. The notebooks guide you through setting up and understanding key concepts, such as using LLMs, implementing reasoning-based workflows, and integrating various tools into agent-driven tasks.
+This module introduces the basics of LLMs and ReAct prompting. It walks you through setting up foundational tools and understanding key concepts like prompting and interacting with language models.
 
 ### 1. `01-llm.ipynb` - **Introduction to LLMs (Llama 3)**
 
@@ -52,31 +53,35 @@ This notebook introduces the concept of Large Language Models (LLMs) using Llama
 
 This notebook introduces the ReAct (Reasoning + Acting) prompting framework with Llama 3. It demonstrates how ReAct enables models to reason through problems, take actions, and adjust based on observations, creating a more dynamic problem-solving loop.
 
-### 3. `03-agent.ipynb` - **Initial Agent Setup**
+## Second Module
+
+This module moves into agent-based interactions, focusing on building and managing AI agents using the ReAct framework. You'll also explore multi-agent systems and how agents can collaborate on tasks.
+
+### 1. `11-agent.ipynb` - **Initial Agent Setup**
 
 This notebook covers the basic setup of an AI-powered agent. It demonstrates how to initialize the agent, load configurations, and connect to external services like OpenShift and the language model.
 
-### 4. `04-react-agent.ipynb` - **ReAct Agent with Llama 3**
+### 2. `12-react-agent.ipynb` - **ReAct Agent with Llama 3**
 
 This notebook introduces the **ReAct agent** powered by the Llama 3 language model. The ReAct framework allows the agent to respond and act on the user’s input in a more dynamic and intelligent manner. The agent can now execute multiple tasks, make decisions, and provide feedback on workflows.
 
-### 5. `06-multi-agent.ipynb` - **Multi-Agent Orchestration using LangChain**
+### 3. `13-multi-agent.ipynb` - **Multi-Agent Orchestration using LangChain**
 
 This notebook demonstrates how to orchestrate multiple agents using LangChain, allowing agents to collaborate on tasks to achieve complex goals.
 
-## Second Module
+## Third Module
 
-This module delves into more advanced topics, focusing on AI agents’ capabilities in task planning, virtualization environments, and integration with OpenShift. The notebooks demonstrate how agents can interact with external platforms and orchestrate complex workflows.
+The third module covers more advanced agent applications, including planning tasks, managing virtual environments, and integrating with platforms like OpenShift. The notebooks demonstrate how agents can orchestrate complex workflows in practical environments.
 
-### 1. `11-planning.ipynb` - **AI Agent Task Planning**
+### 1. `21-planning.ipynb` - **AI Agent Task Planning**
 
 This notebook explores how AI agents can plan tasks using structured processes and tools. It focuses on task breakdown and execution.
 
-### 2. `12-virt-agent.ipynb` - **Virtualization Agent**
+### 2. `22-virt-agent.ipynb` - **Virtualization Agent**
 
 This notebook focuses on the agent’s interaction with virtualization platforms, such as VMware vSphere. The agent can list all virtual machines (VMs), retrieve details about each VM, and create migration plans.
 
-### 3. `13-ocp-agent.ipynb` - **OpenShift Agent**
+### 3. `23-ocp-agent.ipynb` - **OpenShift Agent**
 
 This notebook demonstrates how the AI agent can interact with **OpenShift** to manage various OpenShift resources such as pods, deployments, and nodes. It shows how to use the OpenShift agent for handling OCP workflows.
 
