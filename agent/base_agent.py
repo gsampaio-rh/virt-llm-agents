@@ -41,20 +41,20 @@ class Agent:
     def work(
         self,
         user_request: str,
-        sys_prompt: str = SYS_PROMPT,
+        sys_prompt: str,
     ) -> str:
         """
         Execute a simple task based on the user's request.
         """
         # Define a simple system prompt
-        formatted_sys_prompt = sys_prompt.format(datetime=get_current_utc_datetime())
+        if not sys_prompt:
+            sys_prompt = SYS_PROMPT.format(datetime=get_current_utc_datetime())
+
         user_prompt = f"""<|start_header_id|>user<|end_header_id|>\n\n{user_request}<|eot_id|>
             <|start_header_id|>assistant<|end_header_id|>"""
 
         # Invoke the model with the user's request
-        response = self.invoke_model(
-            sys_prompt=formatted_sys_prompt, user_prompt=user_prompt
-        )
+        response = self.invoke_model(sys_prompt=sys_prompt, user_prompt=user_prompt)
 
         # Return the processed response
         return {
