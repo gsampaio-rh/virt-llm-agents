@@ -51,9 +51,6 @@ class Agent:
         user_prompt = f"""<|start_header_id|>user<|end_header_id|>\n\n{user_request}<|eot_id|>
             <|start_header_id|>assistant<|end_header_id|>"""
 
-        print(formatted_sys_prompt)
-        print(user_prompt)
-
         # Invoke the model with the user's request
         response = self.invoke_model(
             sys_prompt=formatted_sys_prompt, user_prompt=user_prompt
