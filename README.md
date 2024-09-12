@@ -8,39 +8,6 @@ The notebooks demonstrate how to implement AI agents using models like **Llama 3
 
 ---
 
-## Directory Structure
-
-```bash
-.
-├── 01-llm.ipynb                # Introduction to LLMs (Llama 3)
-├── 02-react-prompting.ipynb    # Introduction to ReAct Prompting with Llama 3
-├── 11-agent.ipynb              # Initial setup of AI-powered agent
-├── 12-react-agent.ipynb        # Build a ReAct Agent
-├── 13-multi-agent.ipynb        # Multi-Agent orchestration using LangChain
-├── 21-planning.ipynb           # AI agent task planning
-├── 22-virt-agent.ipynb         # Virtualization agent interacting with VMs
-├── 23-ocp-agent.ipynb          # OpenShift agent for handling OCP workflows
-├── agent                       # Agent source code
-│   └── base_agent.py           # Base agent logic
-│   └── react_agent.py          # ReAct agent logic
-├── agents.yaml                 # Configuration file for agents
-├── images                      # Directory for storing images
-├── prompt                      # Prompts used to interact with LLMs
-│   └── react_prompt.py         # Prompt definitions for ReAct logic
-│   └── base_prompt.py          # Prompt definitions for Base agent
-├── schemas                     # JSON schemas for validation
-│   └── vms_schema.py           # Schema for validating planner outputs
-│   └── vm_schema.py            # Schema for validating VM outputs
-├── services                    # Service layer for OpenShift and models
-│   ├── model_service.py        # Service for interacting with the language model
-│   └── openshift_service.py    # Service for interacting with OpenShift
-├── state                       # State management for agent workflows
-│   └── agent_graph.py          # State graph for task orchestration
-└── utils                       # Helper functions and utilities
-    └── general
-        └── helpers.py          # General utility functions
-```
-
 ## First Module
 
 This module introduces the basics of LLMs and ReAct prompting. It walks you through setting up foundational tools and understanding key concepts like prompting and interacting with language models.
@@ -49,7 +16,11 @@ This module introduces the basics of LLMs and ReAct prompting. It walks you thro
 
 This notebook introduces the concept of Large Language Models (LLMs) using Llama 3. It explains how LLMs can be used for tasks like question answering and text generation.
 
-### 2. `02-react-prompting.ipynb` - **Introduction to ReAct Prompting**
+### 2. `02-tools.ipynb` - **Introduction to Tools calling**
+
+This notebook explores how LLMs, like Llama 3, can be extended using tools to solve tasks that require real-time information or specialized capabilities.
+
+### 3. `03-react-prompting.ipynb` - **Introduction to ReAct Prompting**
 
 This notebook introduces the ReAct (Reasoning + Acting) prompting framework with Llama 3. It demonstrates how ReAct enables models to reason through problems, take actions, and adjust based on observations, creating a more dynamic problem-solving loop.
 
@@ -87,11 +58,7 @@ This notebook demonstrates how the AI agent can interact with **OpenShift** to m
 
 ## Code and Configurations
 
-The `agent`, `services`, `state`, and `utils` directories contain code and configurations related to the AI-powered agents, services, state management, and utility functions.
-
-## Data and Images
-
-The `data` directory contains sample data used in the notebooks, while the `images` directory contains images used for documentation and illustration purposes.
+The `agent`, `prompt`, `schemas`, `services`, `state`, and `utils` directories contain code and configurations related to the AI-powered agents, services, state management, and utility functions.
 
 ## Contributing
 
