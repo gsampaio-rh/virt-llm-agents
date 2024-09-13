@@ -167,4 +167,4 @@ class ReactAgent:
                 except Exception as e:
                     return False, f"Error executing tool {action}: {str(e)}"
         else:
-            return f"Tool {action} not found or unsupported operation."
+            return False, f"Tool {action} not found or unsupported operation."
