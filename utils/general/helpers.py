@@ -25,6 +25,19 @@ def remove_prefix(input_string: str) -> str:
     return input_string
 
 
+def clean_and_load_json(json_string):
+    # Replace single quotes with double quotes
+    cleaned_string = json_string.replace("'", '"')
+
+    try:
+        # Load the cleaned string as JSON
+        json_data = json.loads(cleaned_string)
+        return json_data
+    except json.JSONDecodeError as e:
+        print(f"JSONDecodeError: {e}")
+        return None
+
+
 def extract_list_from_string(input_string):
     try:
         # Find the position of the colon and slice the string after it
