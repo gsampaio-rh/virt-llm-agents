@@ -368,6 +368,43 @@ class OpenShiftService:
             print(f"Error retrieving provider information: {str(e)}")
             return f"Error retrieving provider information: {str(e)}"
 
+    def get_datastore_id_by_vm_id(self, provider_uuid: str, vm_id: str, provider_type: str = "vsphere") -> Union[str, None, str]:
+        """
+        Retrieves the datastore ID by VM ID within a specific provider.
+
+        Args:
+            provider_uuid (str): The UUID of the provider (e.g., VMware).
+            vm_id (str): The ID of the VM.
+            provider_type (str): The type of the provider (default: 'vsphere').
+
+        Returns:
+            str: The ID of the datastore if found.
+            None: If the VM or datastore is not found.
+            str: Error message if the API request fails.
+        """
+        # Construct the URL to retrieve the VM details for the specified provider and VM ID
+        url = f"{self.inventory_service_route}/providers/{provider_type}/{provider_uuid}/vms/{vm_id}"
+
+        try:
+            # Make the GET request to fetch the VM details
+            response = requests.get(url, headers=self.headers, verify=False)
+            response.raise_for_status()  # Raise an error for non-200 responses
+
+            # Parse the JSON response to get the VM details
+            vm_details = response.json()
+
+            # Check if the VM has any disks and extract the datastore ID from the first disk
+            if 'disks' in vm_details and vm_details['disks']:
+                datastore_id = vm_details['disks'][0]['datastore']['id']
+                return datastore_id
+
+            # If no disks or datastore information is found, return None
+            return None
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving VM or datastore information: {str(e)}")
+            return f"Error retrieving VM or datastore information: {str(e)}"
+    
     def lookup_vm_id_by_name(
         self, provider_uuid: str, vm_name: str, provider_type: str = "vsphere"
     ) -> Union[str, None, str]:
@@ -406,6 +443,79 @@ class OpenShiftService:
         except requests.exceptions.RequestException as e:
             print(f"Error retrieving VM information: {str(e)}")
             return f"Error retrieving VM information: {str(e)}"
+
+    def get_datastore_id_by_revision(self, provider_uuid: str) -> Union[str, None]:
+        """
+        Fetches the datastore ID with the lowest revision number.
+
+        Args:
+            provider_uuid (str): The UUID of the provider.
+
+        Returns:
+            str: The ID of the datastore with the lowest revision if found.
+            None: If no datastores are found.
+        """
+        # Construct the URL for fetching the datastores
+        url = f"{self.inventory_service_route}/providers/vsphere/{provider_uuid}/datastores"
+
+        try:
+            # Make the GET request to fetch the datastores
+            response = requests.get(url, headers=self.headers, verify=False)
+            response.raise_for_status()  # Raise an error for non-200 responses
+
+            # Parse the JSON response to get the list of datastores
+            datastores = response.json()
+
+            if not datastores:
+                # Return None if no datastores are found
+                return None
+
+            # Find the datastore with the lowest revision number
+            datastore_with_lowest_revision = min(datastores, key=lambda ds: ds['revision'])
+
+            # Return the ID of the datastore with the lowest revision
+            return datastore_with_lowest_revision['id']
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving datastore information: {str(e)}")
+            return None
+
+    def get_network_id_by_name(
+        self, provider_uuid: str, network_name: str = "segment-migrating-to-ocpvirt"
+    ) -> Union[str, None]:
+        """
+        Fetches the network ID by network name.
+
+        Args:
+            provider_uuid (str): The UUID of the provider.
+            network_name (str): The name of the network to look for (default: 'segment-migrating-to-ocpvirt').
+
+        Returns:
+            str: The ID of the network if found.
+            None: If the network is not found.
+        """
+        # Construct the URL for fetching the networks
+        url = f"{self.inventory_service_route}/providers/vsphere/{provider_uuid}/networks"
+
+        try:
+            # Make the GET request to fetch the networks
+            response = requests.get(url, headers=self.headers, verify=False)
+            response.raise_for_status()  # Raise an error for non-200 responses
+
+            # Parse the JSON response
+            networks = response.json()
+
+            # Search for the network by name and return its ID
+            for network in networks:
+                if network["name"] == network_name:
+                    return network["id"]
+
+            # If no network with the given name is found, return None
+            return None
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving network information: {str(e)}")
+            return None
 
     def start_migration(
         self, plan_name: str, plan_uid: str, namespace: str = "openshift-mtv"
@@ -496,9 +606,9 @@ class OpenShiftService:
 
     def create_storage_map(
         self,
-        source_provider_uid: str = "a1699c04-47c7-4864-852e-f3877bc889e9",
-        destination_provider_uid: str = "c07f4f30-c9a4-4c04-894e-5414820311b8",
-        source_datastore_id: str = "datastore-1032",
+        source_provider_uid: str,
+        destination_provider_uid: str,
+        source_datastore_id: str,
         destination_storage_class: str = "ocs-storagecluster-ceph-rbd",
         namespace: str = "openshift-mtv",
         source_provider_name: str = "vmware",
@@ -574,9 +684,9 @@ class OpenShiftService:
 
     def create_network_map(
         self,
-        source_provider_uid: str = "3442763f-e621-41f9-b2d1-699da301353d",
-        destination_provider_uid: str = "81843304-1280-4cee-b50c-e985b7264272",
-        source_network_id: str = "dvportgroup-1067",
+        source_provider_uid: str,
+        destination_provider_uid: str,
+        source_network_id: str,
         destination_type: str = "pod",
         namespace: str = "openshift-mtv",
         source_provider_name: str = "vmware",
