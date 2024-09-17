@@ -1,80 +1,129 @@
-# Virt-Language Model Agents for OpenShift and Virtualization
+# AI-Powered Agents for OpenShift and Virtualization
 
 ## Overview
 
-This repository contains a set of Python notebooks and tools designed to build AI-powered agents that interact with **OpenShift** and virtualization environments. These agents can perform tasks such as listing virtual machines (VMs), creating migration plans, interacting with OpenShift, and leveraging large language models (LLMs) to drive decision-making processes.
+Welcome to this collection of Python notebooks and tools designed to build AI-powered agents that interact with **OpenShift** and virtualization environments. These agents can:
 
-The notebooks demonstrate how to implement AI agents using models like **Llama 3** and workflow orchestration through **LangChain** and **LangGraph**. They integrate with tools such as **OpenShift**, virtualization platforms, and persistent state management using SQLite.
+- List virtual machines (VMs)
+- Create migration plans
+- Interact with OpenShift
+- Leverage Large Language Models (LLMs) for decision-making
+
+The notebooks demonstrate how to implement AI agents using models like **Llama 3.1** and orchestrate workflows using **LangChain** and **LangGraph**. They integrate with tools such as OpenShift, virtualization platforms, and use SQLite for state management.
 
 ---
 
-## First Module
+## Prerequisites
 
-This module introduces the basics of LLMs and ReAct prompting. It walks you through setting up foundational tools and understanding key concepts like prompting and interacting with language models.
+To get the most out of these notebooks, please ensure you have the following installed and set up:
 
-### 1. `01-llm.ipynb` - **Introduction to LLMs (Llama 3)**
+- **Ollama**: A local LLM server for running language models. Download it from [ollama.com/download](https://ollama.com/download).
+- **LLM Models**: We use models like `llama3.1:latest` and `llama3.1:8b-instruct-fp16`. You can download these models directly from Meta or using Ollama.
 
-This notebook introduces the concept of Large Language Models (LLMs) using Llama 3. It explains how LLMs can be used for tasks like question answering and text generation.
+### Instructions
 
-### 2. `02-tools.ipynb` - **Introduction to Tools calling**
+- **Downloading Ollama**: [Download Ollama](https://ollama.com/download) and follow the installation instructions.
+- **Models We Use**:
+  - `llama3.1:latest`
+  - `llama3.1:8b-instruct-fp16`
+- **Downloading Models**:
+  - **Direct Download from Meta**: Visit [llama.com/llama-downloads](https://www.llama.com/llama-downloads) to download models directly.
+  - **Using Ollama**: You can download models using Ollama with the command:
 
-This notebook explores how LLMs, like Llama 3, can be extended using tools to solve tasks that require real-time information or specialized capabilities.
+  ```bash
+  ollama pull llama3.1:latest
+  ollama pull llama3.1:8b-instruct-fp16
+  ```
 
-### 3. `03-react-prompting.ipynb` - **Introduction to ReAct Prompting**
+---
 
-This notebook introduces the ReAct (Reasoning + Acting) prompting framework with Llama 3. It demonstrates how ReAct enables models to reason through problems, take actions, and adjust based on observations, creating a more dynamic problem-solving loop.
+## Modules
 
-## Second Module
+### Module 1: Introduction to LLMs and ReAct Prompting
 
-This module moves into agent-based interactions, focusing on building and managing AI agents using the ReAct framework. You'll also explore multi-agent systems and how agents can collaborate on tasks.
+#### 1. `11-llm.ipynb` - Introduction to LLMs (Llama 3.1)
 
-### 1. `11-agent.ipynb` - **Initial Agent Setup**
+Learn about Large Language Models using Llama 3.1. Understand how LLMs can be used for tasks like question answering and text generation.
 
-This notebook covers the basic setup of an AI-powered agent. It demonstrates how to initialize the agent, load configurations, and connect to external services like OpenShift and the language model.
+#### 2. `12-tools.ipynb` - Introduction to Tool Calling
 
-### 2. `12-react-agent.ipynb` - **ReAct Agent with Llama 3**
+Discover how LLMs can be extended using tools to solve tasks requiring real-time information or specialized capabilities.
 
-This notebook introduces the **ReAct agent** powered by the Llama 3 language model. The ReAct framework allows the agent to respond and act on the user’s input in a more dynamic and intelligent manner. The agent can now execute multiple tasks, make decisions, and provide feedback on workflows.
+#### 3. `13-react-prompting.ipynb` - Introduction to ReAct Prompting
 
-### 3. `13-multi-agent.ipynb` - **Multi-Agent Orchestration using LangChain**
+Explore the ReAct (Reasoning + Acting) prompting framework. See how ReAct enables models to reason through problems, take actions, and adjust based on observations, creating a dynamic problem-solving loop.
 
-This notebook demonstrates how to orchestrate multiple agents using LangChain, allowing agents to collaborate on tasks to achieve complex goals.
+### Module 2: Agent-Based Interactions
 
-## Third Module
+#### 1. `21-agent.ipynb` - Initial Agent Setup
 
-The third module covers more advanced agent applications, including planning tasks, managing virtual environments, and integrating with platforms like OpenShift. The notebooks demonstrate how agents can orchestrate complex workflows in practical environments.
+Set up an AI-powered agent. Learn how to initialize the agent, load configurations, and connect to external services like OpenShift and the language model.
 
-### 1. `21-planning.ipynb` - **AI Agent Task Planning**
+#### 2. `22-react-agent.ipynb` - ReAct Agent with Llama 3.1
 
-This notebook explores how AI agents can plan tasks using structured processes and tools. It focuses on task breakdown and execution.
+Introduce the ReAct agent powered by Llama 3.1. See how the agent can execute multiple tasks, make decisions, and provide workflow feedback.
 
-### 2. `22-virt-agent.ipynb` - **Virtualization Agent**
+#### 3. `23-multi-agent.ipynb` - Multi-Agent Orchestration using LangChain
 
-This notebook focuses on the agent’s interaction with virtualization platforms, such as VMware vSphere. The agent can list all virtual machines (VMs), retrieve details about each VM, and create migration plans.
+Learn how to orchestrate multiple agents using LangChain, allowing them to collaborate to achieve complex goals.
 
-### 3. `23-ocp-agent.ipynb` - **OpenShift Agent**
+### Module 3: Advanced Agent Applications
 
-This notebook demonstrates how the AI agent can interact with **OpenShift** to manage various OpenShift resources such as pods, deployments, and nodes. It shows how to use the OpenShift agent for handling OCP workflows.
+#### 1. `31-planning.ipynb` - AI Agent Task Planning
+
+Explore how AI agents can plan tasks using structured processes and tools, focusing on task breakdown and execution.
+
+#### 2. `32-virt-agent.ipynb` - Virtualization Agent
+
+See how agents interact with virtualization platforms like VMware vSphere. Agents can list VMs, retrieve VM details, and create migration plans.
+
+#### 3. `33-ocp-agent.ipynb` - OpenShift Agent
+
+Discover how AI agents interact with OpenShift to manage resources such as pods, deployments, and nodes. Learn to use the OpenShift agent for handling workflows.
+
+### Module 4: Migration Workflows (Coming Soon)
+
+#### 1. `41-migration.ipynb` - Migration Multi-Agent Workflow
+
+Dive into creating a powerful migration workflow agent that seamlessly integrates virtualization environments with OpenShift.
+
+---
 
 ## Code and Configurations
 
-The `agent`, `prompt`, `schemas`, `services`, `state`, and `utils` directories contain code and configurations related to the AI-powered agents, services, state management, and utility functions.
+The following directories contain code and configurations for the AI agents, services, state management, and utilities:
+
+- `agent`
+- `prompt`
+- `schemas`
+- `services`
+- `state`
+- `utils`
+
+---
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions, improvements, or new ideas, please feel free to open an issue or submit a pull request.
+Contributions are welcome! If you have suggestions or improvements, please open an issue or submit a pull request.
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the [MIT License](LICENSE).
+
+---
 
 ## Acknowledgments
 
-Special thanks to the developers and community behind LangChain and the LLM models.
-All contributors and users who provided feedback and improvements.
+Special thanks to the developers and community behind LangChain, LangGraph, and LLM models.
+
+---
 
 ## Contact
 
-For any questions or comments, please reach out via <gsampaio@redhat.com>
+For questions or comments, please reach out via email: [gsampaio@redhat.com](mailto:gsampaio@redhat.com)
 
-Let me know if this looks good to you! I'll be happy to make any further adjustments.
+---
+
+Let me know if this looks good to you! I'm happy to make further adjustments.
