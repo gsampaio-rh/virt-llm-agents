@@ -81,7 +81,7 @@ See how agents interact with virtualization platforms like VMware vSphere. Agent
 
 Discover how AI agents interact with OpenShift to manage resources such as pods, deployments, and nodes. Learn to use the OpenShift agent for handling workflows.
 
-### Module 4: Migration Workflows (Coming Soon)
+### Module 4: Migration Workflows
 
 #### 1. `41-migration.ipynb` - Migration Multi-Agent Workflow
 
