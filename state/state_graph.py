@@ -34,7 +34,7 @@ def create_graph(stateGraph, nodes: dict[str, callable]) -> StateGraph:
 
 def run_workflow(
     graph: StateGraph,
-    input_query: str,
+    input_dict: dict,
     config: dict,
     memory,
     iterations=10,
@@ -51,13 +51,12 @@ def run_workflow(
     - iterations (int): Maximum recursion limit
     - verbose (bool): If True, print event details during execution
     """
-    dict_inputs = {"input": input_query}
     limit = {"recursion_limit": iterations}
 
     workflow = graph.compile(checkpointer=memory)
 
     # Stream the events through the workflow
-    for event in workflow.stream(dict_inputs, config):
+    for event in workflow.stream(input_dict, config):
         if verbose:
             print("\nEvent:", event)
         else:
